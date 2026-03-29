@@ -1,9 +1,436 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura | The Everyday Pen, Perfected.</title>
+    
+    <!-- Google Fonts: Inter for Apple-like minimalism -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data for SEO & Conversion -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Aura Classic (12-Pack)",
+      "image": "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&q=80&w=1000",
+      "description": "The minimalist, smudge-proof everyday pen. Writes for 2 miles.",
+      "brand": { "@type": "Brand", "name": "Aura" },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "12.00",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "8432"
+      }
+    }
+    </script>
+
+    <style>
+        /* =========================================
+           1. DESIGN SYSTEM & TOKENS
+           ========================================= */
+        :root {
+            --bg-primary: #FBFBFD; /* Apple off-white */
+            --bg-secondary: #FFFFFF;
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+            --accent-color: #0066CC; /* High-conversion Trust Blue */
+            --accent-hover: #0055B3;
+            --spacing-sm: 1rem;
+            --spacing-md: 2.5rem;
+            --spacing-lg: 5rem;
+            --spacing-xl: 10rem;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* =========================================
+           2. TYPOGRAPHY & BUTTONS
+           ========================================= */
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        p.lead {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 99px; /* Pill shape for modern feel */
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.2);
+        }
+
+        /* =========================================
+           3. LAYOUT COMPONENTS
+           ========================================= */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
+        }
+
+        /* =========================================
+           4. SECTIONS
+           ========================================= */
+        /* Hero Section */
+        .hero {
+            padding-top: 15vh;
+            padding-bottom: var(--spacing-xl);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-secondary);
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .trust-badge span { color: #FFB800; } /* Gold stars */
+
+        .hero-img-container {
+            margin-top: var(--spacing-lg);
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .hero-img-container img {
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        /* Benefits Grid */
+        .benefits {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        @media(min-width: 768px) {
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Product Spotlight */
+        .spotlight {
+            padding: var(--spacing-xl) 0;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        @media(min-width: 768px) {
+            .spotlight {
+                flex-direction: row;
+                text-align: left;
+                gap: var(--spacing-lg);
+            }
+            .spotlight-content { flex: 1; }
+            .spotlight-image { flex: 1; }
+        }
+
+        .spotlight-image img {
+            mix-blend-mode: multiply; /* Makes white background of images blend seamlessly */
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background-color: var(--text-primary);
+            color: white;
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+        }
+
+        .final-cta h2 { color: white; }
+        .final-cta .btn {
+            background-color: white;
+            color: var(--text-primary);
+            margin-top: 2rem;
+        }
+        .final-cta .btn:hover {
+            background-color: var(--bg-primary);
+        }
+
+        /* =========================================
+           5. ANIMATIONS (Scroll Reveal)
+           ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Sticky CTA */
+        @media(max-width: 767px) {
+            .mobile-sticky-cta {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+            .mobile-sticky-cta .btn {
+                width: 100%;
+                display: block;
+            }
+            body { padding-bottom: 80px; } /* Prevent footer overlap */
+        }
+    </style>
 </head>
 <body>
-  <h1>Ça marche</h1>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="container nav-content">
+            <div class="logo">Aura.</div>
+            <div class="cart-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <main>
+        <section class="hero container reveal">
+            <div class="trust-badge">
+                <span>★★★★★</span> Over 2 Million Sold
+            </div>
+            <h1>The everyday pen,<br>perfected.</h1>
+            <p class="lead">Engineered to never skip, smudge, or quit. The reliability of a luxury writing tool, for less than the price of your morning coffee.</p>
+            <a href="#shop" class="btn">Get the 12-Pack — $12.00</a>
+            
+            <div class="hero-img-container reveal">
+                <!-- High contrast, premium macro shot placeholder -->
+                <img src="https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&q=80&w=1200" alt="Aura Minimalist Pen resting on a notebook">
+            </div>
+        </section>
+
+        <!-- BENEFITS SECTION -->
+        <section class="benefits">
+            <div class="container reveal">
+                <h2 style="text-align: center;">Genius in its simplicity.</h2>
+                <div class="grid-3">
+                    <div class="benefit-card reveal">
+                        <div class="benefit-icon">✍️</div>
+                        <h3>2 Miles of Ink</h3>
+                        <p>Our pressurized tungsten carbide ball extends ink life by 300% compared to standard disposable pens.</p>
+                    </div>
+                    <div class="benefit-card reveal">
+                        <div class="benefit-icon">🚫</div>
+                        <h3>Zero Smudges</h3>
+                        <p>Quick-dry archival ink formulates instantly on paper, making it perfect for left-handed writers.</p>
+                    </div>
+                    <div class="benefit-card reveal">
+                        <div class="benefit-icon">💎</div>
+                        <h3>Accessible Premium</h3>
+                        <p>We stripped away the gimmicks. You pay for flawless engineering, not fancy marketing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT SPOTLIGHT -->
+        <section class="spotlight container">
+            <div class="spotlight-image reveal">
+                <img src="https://images.unsplash.com/photo-1610222045610-1845bb29eebf?auto=format&fit=crop&q=80&w=800" alt="Sleek black Aura pen">
+            </div>
+            <div class="spotlight-content reveal">
+                <h2>Designed to disappear.</h2>
+                <p class="lead" style="margin-left: 0;">A pen shouldn't interrupt your thoughts. With a perfectly balanced 8-gram body and a matte grip that never slips, the Aura Classic feels like an extension of your hand.</p>
+                <ul style="list-style: none; margin-bottom: 2rem; color: var(--text-secondary);">
+                    <li style="margin-bottom: 0.5rem;">✓ Hexagonal barrel prevents rolling</li>
+                    <li style="margin-bottom: 0.5rem;">✓ 1.0mm medium point</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Airplane-safe to prevent leaks</li>
+                </ul>
+                <a href="#shop" class="btn" style="background: var(--text-primary);">Add to Cart</a>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="final-cta">
+            <div class="container reveal">
+                <h2>Ready to write?</h2>
+                <p class="lead" style="color: #A1A1A6;">Join 50,000+ thinkers, creators, and professionals.</p>
+                <a href="#shop" class="btn">Shop the Aura Classic</a>
+                <p style="margin-top: 1.5rem; font-size: 0.875rem; color: #A1A1A6;">Free shipping on orders over $20. 30-day returns.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- MOBILE STICKY CTA (Only visible on mobile) -->
+    <div class="mobile-sticky-cta">
+        <a href="#shop" class="btn">Add 12-Pack to Cart - $12</a>
+    </div>
+
+    <!-- JAVASCRIPT FOR APPLE-LIKE ANIMATIONS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Scroll Reveal Animation using Intersection Observer
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15, // Trigger when 15% of element is visible
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Only animate once
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealOnScroll.observe(el);
+            });
+
+            // 2. Hide Mobile Sticky CTA when scrolled to the very bottom to avoid footer clash
+            const stickyCta = document.querySelector('.mobile-sticky-cta');
+            window.addEventListener('scroll', () => {
+                if(window.innerWidth > 767) {
+                    stickyCta.style.display = 'none';
+                    return;
+                }
+                
+                // If user is near the bottom of the page, hide the sticky button
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+                    stickyCta.style.opacity = '0';
+                    stickyCta.style.pointerEvents = 'none';
+                } else {
+                    stickyCta.style.opacity = '1';
+                    stickyCta.style.pointerEvents = 'auto';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
